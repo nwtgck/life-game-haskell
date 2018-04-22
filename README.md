@@ -1,4 +1,7 @@
 # life-game
+[![Build Status](https://travis-ci.com/nwtgck/life-game-haskell.svg?token=TuxNpqznwwyy7hyJwBVm&branch=master)](https://travis-ci.com/nwtgck/life-game-haskell)
+
+Life Game in Haskell
 
 ## Run
 
