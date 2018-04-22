@@ -45,7 +45,5 @@ after_script:
 
 
 script:
-# Build
+# Just Build
 - stack build
-# NOTE: This is working test
-- ! timeout --preserve-status --signal=2 3 stack exec life-game-exe 60 20
