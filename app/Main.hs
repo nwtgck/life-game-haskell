@@ -1,3 +1,5 @@
+module Main where
+
 import           Control.Concurrent
 import           Control.Monad
 import           Control.Monad.Trans.Class
