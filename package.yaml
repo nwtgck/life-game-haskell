@@ -22,8 +22,11 @@ description:         Please see the README on Github at <https://github.com/nwtg
 dependencies:
 - base >= 4.7 && < 5
 
-#library:
-#  source-dirs: src
+library:
+  source-dirs: src
+  dependencies:
+  - transformers
+  - random
 
 executables:
   life-game-exe:
@@ -34,10 +37,8 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - transformers
+    - life-game
     - process
-    - random
-    - ansi-terminal
 
 tests:
   life-game-test:
