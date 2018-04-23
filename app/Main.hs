@@ -10,16 +10,16 @@ import           System.Environment
 import           System.Process
 import           System.Random
 
--- マスの状態の値
+-- | Cell State
 data Cell = Alive | Empty | Wall deriving (Eq)
--- フィールド全体
+-- | Field
 newtype Field = Field {runField :: [[Cell]]}
--- 位置
+-- | Position
 type Pos = (Int, Int)
--- フィールドのサイズ
+-- | Size of field
 type Size = (Int, Int)
 
--- フィールドの位置の場所のCellを返す
+-- | Return cell at the specified position
 at :: Field -> Pos -> Cell
 Field field `at` (i, j) = {-trace (show (i+1) ++ " " ++ show (j+1)) $-} field !! (i+1) !! (j+1)
 
@@ -38,11 +38,11 @@ gameStart field (w, h) action = do
   let next = wrapWall (w,h) $ [[ nextCell field (i, j) | j <- [0..w-1]]| i <- [0..h-1]]
    in gameStart next (w,h) action
 
--- posの場所にある生きているセルを数える
+-- | Count the number of alive cells around the position
 aliveCntAround :: Field -> Pos -> Int
 aliveCntAround field (i, j) = foldl (\s e -> if e == Alive then s+1 else s) 0 $ map (field `at`) [(i-1, j-1),(i-1,j),(i-1,j+1),(i,j-1),(i,j+1),(i+1,j-1),(i+1,j),(i+1,j+1)]
 
--- 今の場所から次のセルを返す
+-- | Return next generate cell
 nextCell :: Field -> Pos -> Cell
 nextCell field pos
   | nowCell == Empty && aroundCnt == 3       = Alive
@@ -55,11 +55,11 @@ nextCell field pos
     aroundCnt = aliveCntAround field pos
 
 
--- 空のフィールド
+-- | Empty field
 emptyField :: Size -> Field
 emptyField (w, h) = wrapWall (w,h) (replicate h $ replicate w Empty)
 
--- ランダムなフィールドを返す
+-- | Generate random field
 randomField :: Size -> IO Field
 randomField (w, h) = do
   rows <- forM [0..h] $ \_ -> do
@@ -69,7 +69,7 @@ randomField (w, h) = do
     return row
   return $ wrapWall (w,h) rows
 
--- 壁で囲むんでFieldを作る
+-- | Create field by wrapping with walls
 wrapWall :: Size -> [[Cell]]  -> Field
 wrapWall (w,h) rows =
   Field $ wallRow : (map (\row -> Wall : row ++ [Wall]) rows) ++ [wallRow]
@@ -87,6 +87,6 @@ main = do
       system "clear"
       print field
       threadDelay 30000
-  else putStrLn "大きさを指定してください"
+  else putStrLn "Specify size of the field"
 
   return ()
