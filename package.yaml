@@ -39,6 +39,7 @@ executables:
     dependencies:
     - life-game
     - process
+    - hscurses
 
 tests:
   life-game-test:
