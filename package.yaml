@@ -4,7 +4,7 @@ github:              "nwtgck/life-game-haskell"
 license:             BSD3
 author:              "Ryo Ota"
 maintainer:          "nwtgck@gmail.com"
-copyright:           "2018 Ryo Ota"
+copyright:           "2016 Ryo Ota"
 
 extra-source-files:
 - README.md
