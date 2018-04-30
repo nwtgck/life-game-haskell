@@ -3,6 +3,8 @@
 
 Life Game in Haskell
 
+![demo1](demo_images/demo1.gif)
+
 ## Run
 
 ```bash
